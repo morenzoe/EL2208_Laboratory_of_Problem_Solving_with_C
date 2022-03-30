@@ -52,14 +52,17 @@ int main()
 {
     Node* head = NULL;
     add(&head, 10018001,90);
-    printf("%d", head->nim);
-    /*
     add(&head, 10018002,80);
     add(&head, 10018003,68);
     add(&head, 10018004,89);
     add(&head, 10018005,92);
     add(&head, 10018006,80);
-    print(head);
+    printf("head\n");
+    printf("NIM: %d, Nilai: %d\n", head->nim, head->nilai);
+    //printf("\n");
+    
+    //print(head);
+    /*
     searchMax(head);
     searchMin(head);
     */
@@ -69,24 +72,35 @@ int main()
 
 void add(Node** head, int nim, int nilai){
     // Mengalokasikan memori
-    struct Node* temp = (struct Node*) malloc(sizeof(struct Node));
+    struct Node* new = (struct Node*) malloc(sizeof(struct Node));
+    struct Node** temp = head;
     
     // Mengisi node baru
-    temp->nim = nim;
-    temp->nilai = nilai;
-    temp->next = NULL;
+    new->nim = nim;
+    new->nilai = nilai;
+    new->next = NULL;
     
     // Memasukkan elemen pertama
-    if(*head == NULL){
+    while(*temp != NULL){
         printf("null\n");
-        *head = temp;
+        *temp = (*temp)->next;
     }
+    *temp = new;
+    printf("NIM: %d, Nilai: %d\n", (*temp)->nim, (*temp)->nilai);
     //free(temp);
 }
-/*
-void print(Node* head){
-}
 
+void print(Node* head){
+    // Mengalokasikan memori
+    struct Node* temp = head;
+    
+    // Mencetak isi node linked list
+    while(temp != NULL){
+        printf("NIM: %d, Nilai: %d\n", temp->nim, temp->nilai);
+        temp = temp->next;
+    }
+}
+/*
 void searchMax(Node* head){
 }
 
