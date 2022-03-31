@@ -5,9 +5,12 @@
 *Nama (NIM)       : Eraraya Morenzo Muten (18320003)
 *Asisten (NIM)    : Agape D'sky (13219010)
 *Nama File        : linkedListOps.c
-*Deskripsi        : 
-*					
-*					
+*Deskripsi        : Program terdiri dari empat fungsi untuk
+*					mengoperasikan linked list yaitu menambah
+*					node pada akhir linked list, menampilkan seluruh
+*					isi linked list, menampilkan nilai maksimum dari
+*					linked list, dan menampilkan nilai minimum dari
+*					linked list.
 */
 
 #include <stdio.h>
@@ -58,10 +61,8 @@ int main()
     add(&head, 10018005,92);
     add(&head, 10018006,80);
     print(head);
-    /*
     searchMax(head);
     searchMin(head);
-    */
     free(head);
     return 0;
 }
@@ -90,6 +91,7 @@ void add(Node** head, int nim, int nilai){
         // Menghubungkan node terakhir dengan node baru
         temp->next = new;
     }
+    
     return;
 }
 
@@ -103,12 +105,41 @@ void print(Node* head){
         temp = temp->next;
     }
 }
-/*
+
 void searchMax(Node* head){
-    printf("Nilai tertinggi:"\n);
+    int nimMax, nilaiMax=0;
     
+    // Membuat struct sementara untuk menyusuri linked list
+    Node* temp = head;
+    
+    // Menampilkan isi node hingga node terakhir
+    while(temp!=NULL){
+        if (temp->nilai > nilaiMax){
+            nilaiMax = temp->nilai;
+            nimMax = temp->nim;
+        }
+        temp = temp->next;
+    }
+    
+    printf("Nilai tertinggi:\n");    
+    printf("NIM: %d, Nilai: %d\n", nimMax, nilaiMax);
 }
 
 void searchMin(Node* head){
+        int nimMin, nilaiMin=100;
+    
+    // Membuat struct sementara untuk menyusuri linked list
+    Node* temp = head;
+    
+    // Menampilkan isi node hingga node terakhir
+    while(temp!=NULL){
+        if (temp->nilai < nilaiMin){
+            nilaiMin = temp->nilai;
+            nimMin = temp->nim;
+        }
+        temp = temp->next;
+    }
+    
+    printf("Nilai terendah:\n");    
+    printf("NIM: %d, Nilai: %d\n", nimMin, nilaiMin);
 }
-*/
